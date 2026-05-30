@@ -1,4 +1,167 @@
-/* Contact avatars */
+/* ===== CSS Variables ===== */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.18);
+    --glass-border: rgba(255, 255, 255, 0.35);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.18);
+    --glass-blur: blur(14px);
+    --navbar-bg: rgba(99, 102, 241, 0.82);
+    --body-bg-start: #e0e7ff;
+    --body-bg-end: #c7d2fe;
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --card-border: rgba(255, 255, 255, 0.45);
+    --footer-bg: rgba(255, 255, 255, 0.25);
+    --text-muted-color: rgba(60, 60, 100, 0.6);
+    --input-bg: rgba(255, 255, 255, 0.55);
+    --input-border: rgba(99, 102, 241, 0.25);
+    --input-focus-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    --transition: all 0.25s ease;
+}
+
+[data-bs-theme="dark"] {
+    --glass-bg: rgba(15, 15, 40, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    --navbar-bg: rgba(10, 10, 30, 0.82);
+    --body-bg-start: #0f0c29;
+    --body-bg-end: #1a1a3e;
+    --card-bg: rgba(20, 20, 50, 0.6);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --footer-bg: rgba(10, 10, 30, 0.4);
+    --text-muted-color: rgba(180, 180, 220, 0.5);
+    --input-bg: rgba(30, 30, 60, 0.55);
+    --input-border: rgba(99, 102, 241, 0.3);
+    --input-focus-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+/* ===== Base ===== */
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    background: linear-gradient(135deg, var(--body-bg-start) 0%, var(--body-bg-end) 100%);
+    background-attachment: fixed;
+    transition: background 0.4s ease;
+}
+
+/* ===== Navbar ===== */
+.glass-navbar {
+    background: var(--navbar-bg) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+.glass-navbar .navbar-brand,
+.glass-navbar .nav-link,
+.glass-navbar .navbar-text {
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.glass-navbar .nav-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+}
+
+/* ===== Buttons ===== */
+.btn-glass {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+}
+
+.btn-exit {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    color: #ffffff !important;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 5px 18px;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.45);
+    transition: var(--transition);
+    letter-spacing: 0.02em;
+}
+
+.btn-exit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(245, 87, 108, 0.65);
+    color: #ffffff !important;
+    filter: brightness(1.08);
+}
+
+/* ===== Cards ===== */
+.card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    border-radius: 16px !important;
+    transition: var(--transition);
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* ===== Forms ===== */
+.form-control,
+.form-select {
+    background: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(6px);
+    transition: var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: var(--input-focus-shadow) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
+    background: var(--input-bg) !important;
+}
+
+/* ===== Alerts ===== */
+.glass-alert {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+/* ===== Footer ===== */
+.footer-glass {
+    background: var(--footer-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border) !important;
+    color: var(--text-muted-color);
+}
+
+/* ===== Contact avatars ===== */
 .contact-avatar {
     width: 56px;
     height: 56px;
@@ -24,17 +187,45 @@
     height: 150px;
 }
 
-/* Contact cards */
-.contact-card {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+/* ===== Glossy shimmer on primary buttons ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+    border-radius: 10px !important;
+    transition: var(--transition);
 }
 
-.contact-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6) !important;
+    filter: brightness(1.08);
 }
 
-/* Navbar */
-.navbar-brand {
-    font-size: 1.3rem;
+.btn-danger {
+    background: linear-gradient(135deg, #f5576c 0%, #c0392b 100%) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.35) !important;
+    transition: var(--transition);
+}
+
+.btn-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(245, 87, 108, 0.55) !important;
+}
+
+.btn-secondary {
+    border-radius: 10px !important;
+    transition: var(--transition);
+}
+
+/* ===== Dropdown glass ===== */
+.dropdown-menu {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--glass-shadow) !important;
 }
