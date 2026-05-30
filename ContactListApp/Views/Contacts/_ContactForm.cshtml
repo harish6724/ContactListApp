@@ -1,0 +1,75 @@
+@model ContactFormViewModel
+
+<h6 class="text-muted border-bottom pb-2 mb-3">Basic Info</h6>
+<div class="row g-3 mb-3">
+    <div class="col-sm-6">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger small"></span>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-sm-6">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" type="email" />
+        <span asp-validation-for="Email" class="text-danger small"></span>
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" type="tel" />
+        <span asp-validation-for="Phone" class="text-danger small"></span>
+    </div>
+</div>
+
+<h6 class="text-muted border-bottom pb-2 mb-3 mt-4">Address</h6>
+<div class="mb-3">
+    <label asp-for="Address" class="form-label"></label>
+    <input asp-for="Address" class="form-control" placeholder="Street address" />
+</div>
+<div class="row g-3 mb-3">
+    <div class="col-sm-5">
+        <label asp-for="City" class="form-label"></label>
+        <input asp-for="City" class="form-control" />
+    </div>
+    <div class="col-sm-4">
+        <label asp-for="State" class="form-label"></label>
+        <input asp-for="State" class="form-control" />
+    </div>
+    <div class="col-sm-3">
+        <label asp-for="ZipCode" class="form-label"></label>
+        <input asp-for="ZipCode" class="form-control" />
+    </div>
+</div>
+
+<h6 class="text-muted border-bottom pb-2 mb-3 mt-4">Additional Info</h6>
+<div class="mb-3">
+    <label asp-for="Notes" class="form-label"></label>
+    <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Any notes about this contact..."></textarea>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Tags" class="form-label"></label>
+    <input asp-for="Tags" class="form-control" placeholder="e.g. work, family, friend" />
+    <div class="form-text">Separate multiple tags with commas</div>
+</div>
+
+<h6 class="text-muted border-bottom pb-2 mb-3 mt-4">Profile Photo</h6>
+<div class="mb-3">
+    @if (!string.IsNullOrEmpty(Model.ExistingPhotoPath))
+    {
+        <div class="mb-2">
+            <img src="@Model.ExistingPhotoPath" alt="Current photo"
+                 class="rounded contact-avatar" />
+            <small class="text-muted ms-2">Current photo</small>
+        </div>
+    }
+    <label asp-for="Photo" class="form-label">@(string.IsNullOrEmpty(Model.ExistingPhotoPath) ? "Upload Photo" : "Replace Photo")</label>
+    <input asp-for="Photo" class="form-control" type="file" accept="image/*" />
+    <div class="form-text">Accepted: JPG, PNG, GIF, WebP. Max 5MB.</div>
+</div>

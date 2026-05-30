@@ -1,0 +1,96 @@
+@model Contact
+@{
+    ViewData["Title"] = Model.FullName;
+}
+
+<div class="row">
+    <div class="col-md-4 text-center mb-4">
+        @if (!string.IsNullOrEmpty(Model.PhotoPath))
+        {
+            <img src="@Model.PhotoPath" alt="@Model.FullName"
+                 class="rounded-circle img-fluid contact-photo-lg shadow" />
+        }
+        else
+        {
+            <div class="contact-avatar-lg rounded-circle mx-auto d-flex align-items-center justify-content-center bg-primary text-white display-4">
+                @Model.FirstName[0]@Model.LastName[0]
+            </div>
+        }
+        <h3 class="mt-3">@Model.FullName</h3>
+
+        <div class="d-flex gap-2 justify-content-center mt-3">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                <i class="bi bi-pencil me-1"></i>Edit
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+                <i class="bi bi-trash me-1"></i>Delete
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Back
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title border-bottom pb-2 mb-3">Contact Information</h5>
+
+                @if (!string.IsNullOrEmpty(Model.Email))
+                {
+                    <div class="mb-2">
+                        <span class="fw-semibold"><i class="bi bi-envelope text-primary me-2"></i>Email</span><br />
+                        <a href="mailto:@Model.Email" class="ms-4">@Model.Email</a>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Phone))
+                {
+                    <div class="mb-2">
+                        <span class="fw-semibold"><i class="bi bi-telephone text-primary me-2"></i>Phone</span><br />
+                        <a href="tel:@Model.Phone" class="ms-4">@Model.Phone</a>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Address) || !string.IsNullOrEmpty(Model.City))
+                {
+                    <div class="mb-2">
+                        <span class="fw-semibold"><i class="bi bi-geo-alt text-primary me-2"></i>Address</span><br />
+                        <span class="ms-4">
+                            @Model.Address@(!string.IsNullOrEmpty(Model.Address) && !string.IsNullOrEmpty(Model.City) ? ", " : "")
+                            @Model.City@(!string.IsNullOrEmpty(Model.State) ? $", {Model.State}" : "")
+                            @(!string.IsNullOrEmpty(Model.ZipCode) ? $" {Model.ZipCode}" : "")
+                        </span>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Notes))
+                {
+                    <div class="mb-2">
+                        <span class="fw-semibold"><i class="bi bi-journal text-primary me-2"></i>Notes</span><br />
+                        <p class="ms-4 mb-0 text-muted">@Model.Notes</p>
+                    </div>
+                }
+
+                @if (Model.TagList.Any())
+                {
+                    <div class="mb-2">
+                        <span class="fw-semibold"><i class="bi bi-tags text-primary me-2"></i>Tags</span><br />
+                        <div class="ms-4 mt-1">
+                            @foreach (var tag in Model.TagList)
+                            {
+                                <a asp-action="Index" asp-route-tag="@tag"
+                                   class="badge bg-secondary text-decoration-none me-1">@tag</a>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <hr />
+                <small class="text-muted">
+                    Added @Model.CreatedAt.ToLocalTime().ToString("MMM d, yyyy") &bull;
+                    Updated @Model.UpdatedAt.ToLocalTime().ToString("MMM d, yyyy")
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+/* Contact avatars */
+.contact-avatar {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+}
+
+.contact-avatar-placeholder {
+    width: 56px;
+    height: 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+.contact-photo-lg {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.contact-avatar-lg {
+    width: 150px;
+    height: 150px;
+}
+
+/* Contact cards */
+.contact-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.3rem;
+}
